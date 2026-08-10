@@ -10,50 +10,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
-
-    Timer(
-  const Duration(seconds: 3),
-  () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
-  },
-);
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0B132B),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            Icon(
-              Icons.checkroom,
-              size: 80,
-              color: Color(0xFFD4AF37),
-            ),
-
+            Image.asset('assets/logo.png', width: 450, height: 450),
             SizedBox(height: 20),
 
-            Text(
-              "ATELIER STYLIST",
-              style: TextStyle(
-                color: Color(0xFFD4AF37),
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
 
-            SizedBox(height: 30),
 
           ],
         ),

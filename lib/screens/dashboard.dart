@@ -8,6 +8,20 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  String getGreeting() {
+    int hour = DateTime.now().hour;
+
+    if (hour >= 5 && hour < 12) {
+      return "Good Morning!";
+    } else if (hour >= 12 && hour < 17) {
+      return "Good Afternoon!";
+    } else if (hour >= 17 && hour < 21) {
+      return "Good Evening!";
+    } else {
+      return "Good Night!";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,10 +29,19 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF0B132B),
         foregroundColor: Color(0xFFD4AF37),
-        title: Text('boutique Name'),
+
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Image.asset('assets/mneme.png', width: 130, height: 130),
+        ),
         elevation: 8,
         shadowColor: Color(0xFFD4AF37),
-        actions: [Icon(Icons.notifications)],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Icon(Icons.notifications),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -29,7 +52,7 @@ class _DashboardState extends State<Dashboard> {
               SizedBox(height: 8),
 
               Text(
-                'Good Morning!',
+                getGreeting(),
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -38,7 +61,7 @@ class _DashboardState extends State<Dashboard> {
               ),
               SizedBox(height: 8),
               Text(
-                "Welcome back to your luxury management site.",
+                "Manage your boutique with ease.",
                 style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
               SizedBox(height: 30),
@@ -153,7 +176,21 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
       ),
-     
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color(0xFF0B132B),
+        selectedItemColor: const Color(0xFFD4AF37),
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Customers"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: "Orders",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+        ],
+      ),
     );
   }
 }
