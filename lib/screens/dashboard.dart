@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'customer_screen.dart';
+import 'order_screen.dart';
+import 'profile_screen.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -8,6 +11,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  int currentIndex = 0;
   String getGreeting() {
     int hour = DateTime.now().hour;
 
@@ -39,7 +43,17 @@ class _DashboardState extends State<Dashboard> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
-            child: Icon(Icons.notifications),
+            child: IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -177,18 +191,45 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+
+        onTap: (index) {
+          if (index == 0) {
+            setState(() {
+              currentIndex = 0;
+            });
+          } else if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CustomerScreen()),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const OrderScreen()),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            );
+          }
+        },
+
         backgroundColor: const Color(0xFF0B132B),
         selectedItemColor: const Color(0xFFD4AF37),
         unselectedItemColor: Colors.grey,
+
         type: BottomNavigationBarType.fixed,
+
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Customers"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Customers'),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
-            label: "Orders",
+            label: 'Orders',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );
