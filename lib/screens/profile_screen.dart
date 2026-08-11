@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0B132B),
 
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF0B132B),
-        foregroundColor: const Color(0xFFD4AF37),
-        title: const Text(
-          'Profile',
-          style: TextStyle(
-            color: Color(0xFFD4AF37),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        elevation: 8,
-        shadowColor: const Color(0xFFD4AF37),
-      ),
+     
 
       body: Center(
         child: Column(
@@ -73,6 +67,7 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
 }
