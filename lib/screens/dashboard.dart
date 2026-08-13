@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'customer_screen.dart';
 import 'order_screen.dart';
 import 'profile_screen.dart';
+import 'add_order_screen.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -281,6 +282,21 @@ class _DashboardState extends State<Dashboard> {
       // ---------------- BODY ----------------
 
       body: getCurrentScreen(),
+      floatingActionButton: currentIndex == 2
+    ? FloatingActionButton(
+        backgroundColor: const Color(0xFFD4AF37),
+        foregroundColor: Colors.black,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddOrderScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+      )
+    : null,
 
       // ---------------- BOTTOM NAVIGATION ----------------
 
